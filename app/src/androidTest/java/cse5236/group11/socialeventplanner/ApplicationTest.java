@@ -1,4 +1,4 @@
-package com.cse5236.group11.socialeventplanner;
+package cse5236.group11.socialeventplanner;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
