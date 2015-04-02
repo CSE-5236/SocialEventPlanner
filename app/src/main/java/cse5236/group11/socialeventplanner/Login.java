@@ -44,20 +44,16 @@ public class Login extends Activity implements View.OnClickListener {
         String password = this.passwordEditableField.getText().toString();
         this.dh = new User(this);
         List<String> names = this.dh.selectAll(username, password);
-        if (names.size() > 0) { // Login successful
+        if (names.size() > 0) {
+            // Login successful
             // Save username as the name of the player
             SharedPreferences settings = PreferenceManager
                     .getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = settings.edit();
             editor.putString(OPT_NAME, username);
             editor.commit();
-
-            // Bring up the GameOptions screen
-//            startActivity(new Intent(this, GameOptions.class));
-//			 startActivity(new Intent(this, DummyActivity.class));
             finish();
         } else {
-            // Try again?
             new AlertDialog.Builder(this)
                     .setTitle("Error")
                     .setMessage("Login failed")
@@ -79,7 +75,7 @@ public class Login extends Activity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.new_user_button:
-//                startActivity(new Intent(this, Account.class));
+                startActivity(new Intent(this, Account.class));
                 break;
         }
     }
