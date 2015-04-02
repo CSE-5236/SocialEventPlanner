@@ -3,9 +3,7 @@ package cse5236.group11.socialeventplanner;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
-import android.app.Activity;
 import android.view.*;
 import android.content.Intent;
 
@@ -40,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void activityTwo(View view){
-        Intent intent = new Intent(this, ActivityTwo.class);
+        Intent intent = new Intent(this, EventDetails.class);
         startActivity(intent);
     }
 }
