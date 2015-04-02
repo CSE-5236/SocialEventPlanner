@@ -6,5 +6,18 @@
     <string name="action_settings">Settings</string>
     <string name="next_activity">NEXT</string>
     <string name="title_activity_activity_two">ActivityTwo</string>
+    <string name="login_title">Tic-Tac-Toe Awaits!</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="permission_launch_activity"> This permission allows launching an activity in this application </string>
+    <string name="exit">Exit</string>
+    <string name="new_account">New Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="new_user">New User</string>
+    <string name="login">Login</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="clear">Clear</string>
+    <string name="create">Create</string>
 
 </resources>

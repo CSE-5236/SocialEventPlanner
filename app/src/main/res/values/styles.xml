@@ -1,5 +1,9 @@
 <resources>
-
+    <color name="background">#676767</color>
+    <color name="dark">#AA545454</color>
+    <color name="light">#AADEDEDE</color>
+    <color name="white">#FFFFFF</color>
+    <color name="selectedBlock">#66FF0000</color>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
