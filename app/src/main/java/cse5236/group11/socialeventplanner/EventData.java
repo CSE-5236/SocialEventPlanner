@@ -50,7 +50,8 @@ public class EventData {
         this.db.delete(TABLE_NAME, null, null);
     }
 
-    public List<String> selectAll(Event event) {
+    public List<String> selectAll() {
+        Event event = new Event();
         List<String> list = new ArrayList<String>();
         try {
             Cursor cursor = this.db.query(TABLE_NAME, new String[]{"Event_Name", "Event_Location", "Date"}, "Event_Name = '" + event.getEventName() + "' AND Event_Location = '" + event.getLocation() + "' AND Date =  '" + event.getDate() + "'", null, null, null, "Event_Name desc");

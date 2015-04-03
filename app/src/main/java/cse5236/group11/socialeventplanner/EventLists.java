@@ -13,10 +13,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
 
-public class EventLists extends ActionBarActivity implements OnClickListener{
-    private Event event = new Event();
-    //private User user = new User();
+
+public class EventLists extends ActionBarActivity {
+    private EventData dbhelper;
+    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,31 +27,18 @@ public class EventLists extends ActionBarActivity implements OnClickListener{
         setContentView(R.layout.event_list);
 
         View btnNewEvent = (Button) findViewById(R.id.new_event_button);
-        btnNewEvent.setOnClickListener(this);
 
-        String[] fromColumns = {event.getEventName()};
-        int[] toViews = {R.id.event_name, R.id.creators_name};
+        dbhelper = new EventData(this);
+        //should probably add open and close ability to database
 
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.activity_event_details,
-                null, fromColumns, toViews, 0);
+
+        //WORK FROM HERE, NEED TO SETUP ADAPTER SO ALL ADDED EVENTS WILL DISPLAY IN LIST VIEW AS THEY ARE CREATED
+        adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,dbhelper.selectAll(), );
+    }
+
+    private void displayListView(){
+        List<String> events = dbhelper.selectAll();
 
 
     }
-
-    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        //called when a new cursor needs to be displayed
-        return new CursorLoader(this, event, null, null, null);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-
-        Log.d("EventLists","hello world");
-    }
-
-    public void onClick(View v){
-        startActivity(new Intent(this,EventDetails.class));
-    }
-
 }
