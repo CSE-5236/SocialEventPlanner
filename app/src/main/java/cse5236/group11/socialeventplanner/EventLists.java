@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class EventDetails extends ActionBarActivity {
+public class EventLists extends ActionBarActivity {
     TextView textView;
 
     @Override
@@ -27,7 +27,7 @@ public class EventDetails extends ActionBarActivity {
         super.onResume();
         textView = (TextView)findViewById(R.id.status_message);
         textView.setText("Activity 2 was paused, now resumed");
-        Log.d("EventDetails","hello world");
+        Log.d("EventLists","hello world");
     }
 
     public void mainActivity(View view){
