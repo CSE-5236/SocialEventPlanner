@@ -1,16 +1,18 @@
 package cse5236.group11.socialeventplanner;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-<<<<<<< HEAD
-=======
 import java.util.List;
->>>>>>> origin/master
+
 
 /**
  * Created by Nandkumar on 3/27/2015.
@@ -39,9 +41,9 @@ public class Login extends Activity implements OnClickListener {
     private void checkLogin() {
         String username = this.userNameEditableField.getText().toString();
         String password = this.passwordEditableField.getText().toString();
-<<<<<<< HEAD
-       // this.dh = new User(this);
-        //List<String> names = this.dh.selectAll(username, password);
+
+//       this.dataAccess = new LoginDataAccess(this);
+//        List<String> names = this.dataAccess.selectAll(username, password);
 //        if (names.size() > 0) {
 //            // Login successful
 //            // Save username as the name of the player
@@ -62,7 +64,7 @@ public class Login extends Activity implements OnClickListener {
 //                                }
 //                            }).show();
 //        }
-=======
+
         this.dataAccess = new LoginDataAccess(this);
         List<String> names = this.dataAccess.selectAll(username, password);
         if (names.size() > 0) {
@@ -72,7 +74,7 @@ public class Login extends Activity implements OnClickListener {
             SharedPreferences.Editor editor = settings.edit();
             editor.putString(OPT_NAME, username);
             editor.commit();
-//            startActivity(new Intent(this, Help.class));
+            startActivity(new Intent(this, Help.class));
             startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
@@ -86,7 +88,7 @@ public class Login extends Activity implements OnClickListener {
                                 }
                             }).show();
         }
->>>>>>> origin/master
+
     }
 
     public void onClick(View v) {
