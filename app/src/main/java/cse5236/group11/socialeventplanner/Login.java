@@ -1,19 +1,11 @@
 package cse5236.group11.socialeventplanner;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-import java.util.List;
-
-import cse5236.group11.socialeventplanner.DataAccess.User;
 
 /**
  * Created by Nandkumar on 3/27/2015.
@@ -42,34 +34,35 @@ public class Login extends Activity implements View.OnClickListener {
     private void checkLogin() {
         String username = this.userNameEditableField.getText().toString();
         String password = this.passwordEditableField.getText().toString();
-        this.dh = new User(this);
-        List<String> names = this.dh.selectAll(username, password);
-        if (names.size() > 0) {
-            // Login successful
-            // Save username as the name of the player
-            SharedPreferences settings = PreferenceManager
-                    .getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString(OPT_NAME, username);
-            editor.commit();
-            finish();
-        } else {
-            new AlertDialog.Builder(this)
-                    .setTitle("Error")
-                    .setMessage("Login failed")
-                    .setNeutralButton("Try Again",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int which) {
-                                }
-                            }).show();
-        }
+       // this.dh = new User(this);
+        //List<String> names = this.dh.selectAll(username, password);
+//        if (names.size() > 0) {
+//            // Login successful
+//            // Save username as the name of the player
+//            SharedPreferences settings = PreferenceManager
+//                    .getDefaultSharedPreferences(this);
+//            SharedPreferences.Editor editor = settings.edit();
+//            editor.putString(OPT_NAME, username);
+//            editor.commit();
+//            finish();
+//        } else {
+//            new AlertDialog.Builder(this)
+//                    .setTitle("Error")
+//                    .setMessage("Login failed")
+//                    .setNeutralButton("Try Again",
+//                            new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog,
+//                                                    int which) {
+//                                }
+//                            }).show();
+//        }
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-                checkLogin();
+                //checkLogin();
+                startActivity(new Intent(this,EventLists.class));
                 break;
             case R.id.cancel_button:
                 finish();

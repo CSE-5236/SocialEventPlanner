@@ -39,10 +39,9 @@
             android:label="@string/app_name"
             android:launchMode="standard"
             android:permission="cse5236.group11.socialeventplanner.LAUNCHACTIVITY"
-<<<<<<< HEAD
             android:screenOrientation="unspecified"
             >
-=======
+
             android:screenOrientation="unspecified" >
 >>>>>>> origin/master
             <intent-filter>
@@ -51,8 +50,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-=======
+
         <activity
             android:name="cse5236.group11.socialeventplanner.Account"
             android:label="@string/app_name"
@@ -68,7 +66,7 @@
 >>>>>>> origin/master
 
         <activity
-            android:name=".EventDetails"
+            android:name=".EventLists"
             android:label="@string/title_activity_activity_two" >
         </activity>
     </application>

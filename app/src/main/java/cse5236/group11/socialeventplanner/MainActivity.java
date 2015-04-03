@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void activityTwo(View view){
-        Intent intent = new Intent(this, EventDetails.class);
+        Intent intent = new Intent(this, EventLists.class);
         startActivity(intent);
     }
 }
