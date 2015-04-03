@@ -8,18 +8,16 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
 import java.util.List;
-
-import cse5236.group11.socialeventplanner.DataAccess.User;
 
 /**
  * Created by Nandkumar on 3/27/2015.
  */
-public class Login extends Activity implements View.OnClickListener {
-    private User dh;
+public class Login extends Activity implements OnClickListener {
+    private LoginDataAccess dataAccess;
     private EditText userNameEditableField;
     private EditText passwordEditableField;
     private final static String OPT_NAME = "name";
@@ -42,16 +40,17 @@ public class Login extends Activity implements View.OnClickListener {
     private void checkLogin() {
         String username = this.userNameEditableField.getText().toString();
         String password = this.passwordEditableField.getText().toString();
-        this.dh = new User(this);
-        List<String> names = this.dh.selectAll(username, password);
+        this.dataAccess = new LoginDataAccess(this);
+        List<String> names = this.dataAccess.selectAll(username, password);
         if (names.size() > 0) {
             // Login successful
-            // Save username as the name of the player
             SharedPreferences settings = PreferenceManager
                     .getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = settings.edit();
             editor.putString(OPT_NAME, username);
             editor.commit();
+//            startActivity(new Intent(this, Help.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
             new AlertDialog.Builder(this)

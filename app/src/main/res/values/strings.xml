@@ -22,4 +22,21 @@
     <string name="create_new_account">Create New Account</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="help">Help</string>
+    <string name="exit_help">Exit Help</string>
+<string name="help_text"><b>About SocialEventPlanner</b>\n
+		Users log on to a system in which they can\n
+    create social events to share with other users.\n
+    You must have an account and log into the system to use it.\n
+    Upon logging in the Event Screen will be displayed.\n
+    On the Event Screen every event along with the time,\n
+    location, and creating user will be displayed in\n
+    chronological order.\n
+    Each individual event can be clicked on and the details displayed.\n
+    On the Details Screen the: event name, location, creating user,\n
+    location, details of the event, associated picture,\n
+    and google maps location will be displayed.\n
+    On the Details screen will be an option to\n
+    add the event to your external calendar.\n
+		\n\n	</string>
 </resources>
