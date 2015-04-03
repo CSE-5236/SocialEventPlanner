@@ -4,14 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> origin/master
 
 /**
  * Created by Nandkumar on 3/27/2015.
  */
-public class Login extends Activity implements View.OnClickListener {
-    private User dh;
+public class Login extends Activity implements OnClickListener {
+    private LoginDataAccess dataAccess;
     private EditText userNameEditableField;
     private EditText passwordEditableField;
     private final static String OPT_NAME = "name";
@@ -34,6 +39,7 @@ public class Login extends Activity implements View.OnClickListener {
     private void checkLogin() {
         String username = this.userNameEditableField.getText().toString();
         String password = this.passwordEditableField.getText().toString();
+<<<<<<< HEAD
        // this.dh = new User(this);
         //List<String> names = this.dh.selectAll(username, password);
 //        if (names.size() > 0) {
@@ -56,6 +62,31 @@ public class Login extends Activity implements View.OnClickListener {
 //                                }
 //                            }).show();
 //        }
+=======
+        this.dataAccess = new LoginDataAccess(this);
+        List<String> names = this.dataAccess.selectAll(username, password);
+        if (names.size() > 0) {
+            // Login successful
+            SharedPreferences settings = PreferenceManager
+                    .getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(OPT_NAME, username);
+            editor.commit();
+//            startActivity(new Intent(this, Help.class));
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Error")
+                    .setMessage("Login failed")
+                    .setNeutralButton("Try Again",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                }
+                            }).show();
+        }
+>>>>>>> origin/master
     }
 
     public void onClick(View v) {

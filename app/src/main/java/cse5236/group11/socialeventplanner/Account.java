@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+<<<<<<< HEAD
 import cse5236.group11.socialeventplanner.User;
 
+=======
+>>>>>>> origin/master
 /**
  * Created by Nandkumar on 4/2/2015.
  */
@@ -18,7 +21,7 @@ public class Account extends Activity implements View.OnClickListener {
     private EditText etUsername;
     private EditText etPassword;
     private EditText etConfirm;
-    private User dh;
+    private LoginDataAccess dataAccess;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +43,13 @@ public class Account extends Activity implements View.OnClickListener {
         String confirm = etConfirm.getText().toString();
         if ((password.equals(confirm)) && (!username.equals(""))
                 && (!password.equals("")) && (!confirm.equals(""))) {
+<<<<<<< HEAD
            // this.dh = new User(this);
             //this.dh.insert(username, password);
+=======
+            this.dataAccess = new LoginDataAccess(this);
+            this.dataAccess.insert(username, password);
+>>>>>>> origin/master
             // this.labResult.setText("Added");
             Toast.makeText(Account.this, "new record inserted",
                     Toast.LENGTH_SHORT).show();
