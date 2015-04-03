@@ -75,7 +75,6 @@ public class Login extends Activity implements OnClickListener {
             editor.putString(OPT_NAME, username);
             editor.commit();
             startActivity(new Intent(this, Help.class));
-            startActivity(new Intent(this, MainActivity.class));
             finish();
         } else {
             new AlertDialog.Builder(this)
@@ -94,7 +93,7 @@ public class Login extends Activity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_button:
-                //checkLogin();
+                checkLogin();
                 startActivity(new Intent(this,EventLists.class));
                 break;
             case R.id.cancel_button:
