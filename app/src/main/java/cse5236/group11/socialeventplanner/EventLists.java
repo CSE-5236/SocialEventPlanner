@@ -33,7 +33,7 @@ public class EventLists extends ActionBarActivity {
 
 
         //WORK FROM HERE, NEED TO SETUP ADAPTER SO ALL ADDED EVENTS WILL DISPLAY IN LIST VIEW AS THEY ARE CREATED
-        adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,dbhelper.selectAll(), );
+        //adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,dbhelper.selectAll(), );
     }
 
     private void displayListView(){
