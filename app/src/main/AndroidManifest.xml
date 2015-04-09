@@ -68,7 +68,7 @@
         </activity>
         <activity
             android:name=".EventLists"
-            android:label="@string/title_activity_activity_two" >
+            android:label="@string/events" >
         </activity>
         <activity
             android:name=".EventDetails"
