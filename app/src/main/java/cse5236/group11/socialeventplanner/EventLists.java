@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventLists extends ActionBarActivity {
+public class EventLists extends ActionBarActivity implements OnClickListener {
     private EventData dbhelper;
     private SimpleCursorAdapter adapter;
 
@@ -27,13 +27,21 @@ public class EventLists extends ActionBarActivity {
         setContentView(R.layout.event_list);
 
         View btnNewEvent = (Button) findViewById(R.id.new_event_button);
+        btnNewEvent.setOnClickListener(this);
 
         dbhelper = new EventData(this);
         //should probably add open and close ability to database
 
 
         //WORK FROM HERE, NEED TO SETUP ADAPTER SO ALL ADDED EVENTS WILL DISPLAY IN LIST VIEW AS THEY ARE CREATED
-        //adapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,dbhelper.selectAll(), );
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.new_event_button:
+                startActivity(new Intent(this,EventDetails.class));
+                break;
+        }
     }
 
     private void displayListView(){
