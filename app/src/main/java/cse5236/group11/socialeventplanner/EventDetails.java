@@ -21,7 +21,7 @@ public class EventDetails extends ActionBarActivity implements View.OnClickListe
     private static EditText event_name;
     private static EditText event_location;
     private static EditText event_date;
-    private static EventData dataAccess;
+    private static EventDataHandler dataAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

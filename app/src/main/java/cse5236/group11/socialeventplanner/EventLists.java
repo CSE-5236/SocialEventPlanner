@@ -1,52 +1,53 @@
 package cse5236.group11.socialeventplanner;
 
-import android.content.CursorLoader;
+import android.app.ListActivity;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
+import android.provider.CalendarContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.ListAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
-public class EventLists extends ActionBarActivity implements OnClickListener {
-    private EventData dbhelper;
-    private SimpleCursorAdapter adapter;
+public class EventLists extends ListActivity {
+    private Event event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_list);
 
-        View btnNewEvent = (Button) findViewById(R.id.new_event_button);
-        btnNewEvent.setOnClickListener(this);
+        EventDataHandler db = new EventDataHandler(this);
 
-        dbhelper = new EventData(this);
-        //should probably add open and close ability to database
+        //Hash map for list view to make item clickable
+        ArrayList<HashMap<String, String>> Items = new ArrayList<HashMap<String, String>>();
+        List<Event> events = db.getEvents();
 
+        for(Event e : events) {
+            HashMap<String, String> map = new HashMap<String, String>();
+            map.put("event",e.getEventName());
+            map.put("location", e.getLocation());
+            map.put("date", e.getDate());
 
-        //WORK FROM HERE, NEED TO SETUP ADAPTER SO ALL ADDED EVENTS WILL DISPLAY IN LIST VIEW AS THEY ARE CREATED
-    }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.new_event_button:
-                startActivity(new Intent(this,EventDetails.class));
-                break;
+            Items.add(map);
         }
-    }
 
-    private void displayListView(){
-        List<String> events = dbhelper.selectAll();
+        ListAdapter adapter = new SimpleAdapter(this, Items,R.layout.event_list, new String[]
+                {"event", "location", "date"}, new int[]{R.id.event_name, R.id.event_location, R.id.event_date});
 
+        setListAdapter(adapter);
+
+        //TODO: make items clickable to open each event
 
     }
 }
