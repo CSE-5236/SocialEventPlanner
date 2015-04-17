@@ -17,10 +17,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-public class EventDetails extends ActionBarActivity implements View.OnClickListener {
-    private static EditText event_name;
-    private static EditText event_location;
-    private static EditText event_date;
+public class EventDetails extends ActionBarActivity {
+//    private static EditText event_name;
+//    private static EditText event_location;
+//    private static EditText event_date;
     private static EventDataHandler dataAccess;
 
     @Override
@@ -33,13 +33,9 @@ public class EventDetails extends ActionBarActivity implements View.OnClickListe
                     .commit();
         }
 
-        event_name = (EditText) findViewById(R.id.event_name);
-        event_location = (EditText) findViewById(R.id.event_location);
-        event_date = (EditText) findViewById(R.id.event_date);
-//        View btnAdd = (Button) findViewById(R.id.create_button);
-//        btnAdd.setOnClickListener(this);
-//        View btnCancel = (Button) findViewById(R.id.cancel_event_button);
-//        btnCancel.setOnClickListener(this);
+//        event_name = (EditText) findViewById(R.id.event_name);
+//        event_location = (EditText) findViewById(R.id.event_location);
+//        event_date = (EditText) findViewById(R.id.event_date);
     }
 
 
@@ -82,33 +78,31 @@ public class EventDetails extends ActionBarActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 CreateEvent(v);
-
             }
         });
         View btnCancel = (Button) rootView.findViewById(R.id.cancel_event_button);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
-
             return rootView;
         }
+
         private void CreateEvent(View v) {
-            String eName = event_name.getText().toString();
-            String eLocation = event_location.getText().toString();
-            String eDate = event_date.getText().toString();
+            String eName= ((EditText)getView().findViewById(R.id.event_name)).getText().toString();
+            String eLocation = ((EditText)getView().findViewById(R.id.event_location)).getText().toString();
+            String eDate = ((EditText)getView().findViewById(R.id.event_date)).getText().toString();
         if ((!eName.equals(""))
                 && (!eLocation.equals("")) && (!eDate.equals(""))) {
 
-//            dataAccess= new EventData(this);
-//            Event event=new Event();
-//            event.setEventName(eName);
-//            event.setLocation(eLocation);
-//            event.setDate(eDate);
-//            dataAccess.insert(event);
-            // this.labResult.setText("Added");
+            dataAccess= new EventDataHandler(getActivity());
+            Event event=new Event();
+            event.setEventName(eName);
+            event.setLocation(eLocation);
+            event.setDate(eDate);
+            dataAccess.addEvent(event);
+//            this.labResult.setText("Added");
 //            Toast.makeText(this, "new record inserted",
 //                    Toast.LENGTH_SHORT).show();
 //            finish();
@@ -116,47 +110,15 @@ public class EventDetails extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.done_button:
-                CreateEvent();
-                finish();
-                break;
-            case R.id.cancel_button:
-                finish();
-                break;
-        }
-    }
-
-    private void CreateEvent() {
-        String eName = event_name.getText().toString();
-        String eLocation = event_location.getText().toString();
-        String eDate = event_date.getText().toString();
-//        if ((password.equals(confirm)) && (!username.equals(""))
-//                && (!password.equals("")) && (!confirm.equals(""))) {
-//
-//            this.dataAccess = new LoginDataAccess(this);
-//            this.dataAccess.insert(username, password);
-//            // this.labResult.setText("Added");
-//            Toast.makeText(Account.this, "new record inserted",
-//                    Toast.LENGTH_SHORT).show();
-//            finish();
-//        } else if ((username.equals("")) || (password.equals(""))
-//                || (confirm.equals(""))) {
-//            Toast.makeText(Account.this, "Missing entry", Toast.LENGTH_SHORT)
-//                    .show();
-//        } else if (!password.equals(confirm)) {
-//            new AlertDialog.Builder(this)
-//                    .setTitle("Error")
-//                    .setMessage("passwords do not match")
-//                    .setNeutralButton("Try Again",
-//                            new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog,
-//                                                    int which) {
-//                                }
-//                            })
-//
-//                    .show();
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.done_button:
+//                CreateEvent();
+//                finish();
+//                break;
+//            case R.id.cancel_button:
+//                finish();
+//                break;
 //        }
-    }
+//    }
 }

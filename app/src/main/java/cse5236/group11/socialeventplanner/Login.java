@@ -76,6 +76,7 @@ public class Login extends Activity implements OnClickListener {
             editor.commit();
             startActivity(new Intent(this,EventLists.class));
 //            startActivity(new Intent(this, Help.class));
+//            startActivity(new Intent(this, EventDetails.class));
             finish();
         } else {
             new AlertDialog.Builder(this)
