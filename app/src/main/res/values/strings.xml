@@ -40,5 +40,6 @@
     add the event to your external calendar.\n
 		\n\n	</string>
     <string name="title_activity_event_details">EventDetails</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
