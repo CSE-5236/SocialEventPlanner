@@ -85,7 +85,7 @@ public class EventDetails extends ActionBarActivity implements View.OnClickListe
 
             }
         });
-        View btnCancel = (Button) rootView.findViewById(R.id.cancel_event_button);
+        View btnCancel = (Button) rootView.findViewById(R.id.delete_event);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -27,6 +27,7 @@ public class EventLists extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.event_list);
 
+
         EventDataHandler db = new EventDataHandler(this);
 
         //Hash map for list view to make item clickable
