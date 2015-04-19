@@ -80,7 +80,7 @@ public class EventDetails extends ActionBarActivity {
                 CreateEvent(v);
             }
         });
-        View btnCancel = (Button) rootView.findViewById(R.id.delete_event);
+        View btnCancel = (Button) rootView.findViewById(R.id.cancel_event_button);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
