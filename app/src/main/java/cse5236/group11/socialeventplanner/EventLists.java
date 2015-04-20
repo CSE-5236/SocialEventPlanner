@@ -1,18 +1,24 @@
 package cse5236.group11.socialeventplanner;
 
 import android.app.ListActivity;
+import android.app.usage.UsageEvents;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.CalendarContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,10 +29,30 @@ public class EventLists extends ListActivity {
     private Event event;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.new_event:
+//                startActivity(new Intent(this, EventDetails.class));
+                startActivity(new Intent("cse5236.group11.socialeventplanner.EventDetails"));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_list);
-
+//        setContentView(R.layout.event_list);
 
         EventDataHandler db = new EventDataHandler(this);
 
@@ -50,5 +76,13 @@ public class EventLists extends ListActivity {
 
         //TODO: make items clickable to open each event
 
+    }
+
+    @Override
+    protected void onListItemClick(ListView list, View view, int position, long id) {
+        super.onListItemClick(list, view, position, id);
+//        String[] event = (String[]) getListView().getItemAtPosition(position);
+        //String selectedItem = (String) getListAdapter().getItem(position);
+//        text.setText("You clicked " + event[0] +" "+event[1]+" "+event[2]+ " at position " + position);
     }
 }

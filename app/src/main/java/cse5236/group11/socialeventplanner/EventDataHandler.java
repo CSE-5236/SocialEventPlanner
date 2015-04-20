@@ -14,11 +14,16 @@ import android.util.Log;
 /**
  * Created by Aaron on 4/3/2015.
  */
-public class EventDataHandler extends SQLiteOpenHelper {
+public class EventDataHandler {
     //database info
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SocialEventPlanner.db";
-    private static final String TABLE_Name = "Events";
+    private static final String DATABASE_NAME = "SocialEvents.db";
+    private static final String TABLE_NAME = "Events";
+
+    private Context context;
+    private SQLiteDatabase db;
+    private SQLiteStatement insertStmt;
+    private static final String INSERT = "insert into " + TABLE_NAME + "(Event_Name, Event_Location,Event_Date) values (?, ?,?)" ;
 
     //column names
     private static final String KEY_ID = "Event_Id";
@@ -27,44 +32,41 @@ public class EventDataHandler extends SQLiteOpenHelper {
     private static final String KEY_DATE = "Event_Date";
 
     public EventDataHandler(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
+        SocialEventPlannerSQLHelper openHelper = new SocialEventPlannerSQLHelper(this.context);
+        this.db = openHelper.getWritableDatabase();
+        this.insertStmt = this.db.compileStatement(INSERT);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        //form table
-        String CREATE_EVENT_TABLE = "CREATE TABLE" + TABLE_Name + "(" + KEY_ID + " INTEGER PRIMARY KEY"
-                + KEY_EVENT_NAME + " TEXT" + KEY_LOCATION + " TEXT" + KEY_DATE + " TEXT" +")";
+    public boolean addEvent(Event event) {
+        this.insertStmt.bindString(1, event.getEventName());
+        this.insertStmt.bindString(2, event.getLocation());
+        this.insertStmt.bindString(2, event.getDate());
+        try
+        {
+            this.insertStmt.executeInsert();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            Log.v("Error",ex.getMessage());
+            return false;
+        }
 
-        db.execSQL(CREATE_EVENT_TABLE);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_Name);
-
-        onCreate(db);
-    }
-
-    public void addEvent(Event event) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_EVENT_NAME,event.getEventName());
-        values.put(KEY_LOCATION,event.getLocation());
-        values.put(KEY_DATE, event.getDate());
-
-        db.insert(TABLE_Name,null,values);
-        db.close();
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_EVENT_NAME,event.getEventName());
+//        values.put(KEY_LOCATION,event.getLocation());
+//        values.put(KEY_DATE, event.getDate());
+//
+//        db.insert(TABLE_NAME,null,values);
+//        db.close();
     }
 
     public List<Event> getEvents() {
         List<Event> events = new ArrayList<Event>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_Name;
-
-        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT  * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
@@ -86,6 +88,26 @@ public class EventDataHandler extends SQLiteOpenHelper {
         return events;
     }
 
+    private static class SocialEventPlannerSQLHelper extends SQLiteOpenHelper {
+        SocialEventPlannerSQLHelper(Context context) {
+            super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            String CREATE_EVENT_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID + " INTEGER PRIMARY KEY, "
+                    + KEY_EVENT_NAME + " TEXT, " + KEY_LOCATION + " TEXT, " + KEY_DATE + " TEXT)";
+
+            db.execSQL(CREATE_EVENT_TABLE);
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Log.w("Delete", "Upgrading database; this will drop and recreate the tables.");
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            onCreate(db);
+        }
+    }
     //TODO: add a delete event ability
     //TODO: add a select single event ability (will require looking up event by name in SQLite)
 }

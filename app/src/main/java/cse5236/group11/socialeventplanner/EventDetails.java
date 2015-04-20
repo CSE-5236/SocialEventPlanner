@@ -2,6 +2,7 @@ package cse5236.group11.socialeventplanner;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -84,6 +85,7 @@ public class EventDetails extends ActionBarActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent("cse5236.group11.socialeventplanner.EventLists"));
             }
         });
             return rootView;
@@ -102,10 +104,15 @@ public class EventDetails extends ActionBarActivity {
             event.setLocation(eLocation);
             event.setDate(eDate);
             dataAccess.addEvent(event);
+
+            //For testing and it works
+            //dataAccess.getEvents();
+
+
 //            this.labResult.setText("Added");
 //            Toast.makeText(this, "new record inserted",
 //                    Toast.LENGTH_SHORT).show();
-//            finish();
+            startActivity(new Intent("cse5236.group11.socialeventplanner.EventLists"));
         }
         }
     }
