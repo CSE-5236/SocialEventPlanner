@@ -117,6 +117,12 @@ public class EventDetails extends ActionBarActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
 //    public void onClick(View v) {
 //        switch (v.getId()) {
 //            case R.id.done_button:

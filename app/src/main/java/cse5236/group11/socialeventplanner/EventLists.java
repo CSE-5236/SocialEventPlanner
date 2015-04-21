@@ -8,11 +8,13 @@ import android.provider.CalendarContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -43,12 +45,13 @@ public class EventLists extends ListActivity {
             case R.id.new_event:
 //                startActivity(new Intent(this, EventDetails.class));
 //                startActivity(new Intent("cse5236.group11.socialeventplanner.EventDetails"));
-                startActivity(new Intent(getApplicationContext(),EventDetails.class));
+                startActivity(new Intent(getApplicationContext(), EventDetails.class));
                 break;
             case R.id.action_logout:
 //                startActivity(new Intent(this, EventDetails.class));
                 startActivity(new Intent("cse5236.group11.socialeventplanner.Login"));
-                return true;
+                finish();
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -56,9 +59,29 @@ public class EventLists extends ListActivity {
     }
 
     @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.floating_menu, menu);
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.delete_event:
+//                delete_event(info.id);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
+        registerForContextMenu(getListView());
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.event_list);
+        setContentView(R.layout.event_list);
 
         EventDataHandler db = new EventDataHandler(this);
 
@@ -71,13 +94,14 @@ public class EventLists extends ListActivity {
             map.put("event",e.getEventName());
             map.put("location", e.getLocation());
             map.put("date", e.getDate());
-
             Items.add(map);
         }
 
-        ListAdapter adapter = new SimpleAdapter(this, Items,R.layout.event_list, new String[]
-                {"event", "location", "date"}, new int[]{R.id.event_name, R.id.event_location, R.id.event_date});
+        // create the grid item mapping
+        String[] from = new String[]{"event", "date","location"};
+        int[] to = new int[] {R.id.event_name, R.id.event_date,R.id.event_location};
 
+        ListAdapter adapter = new SimpleAdapter(this, Items,R.layout.event_list, from,to);
         setListAdapter(adapter);
 
         //TODO: make items clickable to open each event
@@ -85,10 +109,16 @@ public class EventLists extends ListActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
+
+    @Override
     protected void onListItemClick(ListView list, View view, int position, long id) {
         super.onListItemClick(list, view, position, id);
-//        String[] event = (String[]) getListView().getItemAtPosition(position);
-        //String selectedItem = (String) getListAdapter().getItem(position);
+        HashMap<String,String> event = (HashMap<String ,String>) getListView().getItemAtPosition(position);
+//        String selectedItem = (String) getListAdapter().getItem(position);
 //        text.setText("You clicked " + event[0] +" "+event[1]+" "+event[2]+ " at position " + position);
     }
 }

@@ -41,7 +41,7 @@ public class EventDataHandler {
     public boolean addEvent(Event event) {
         this.insertStmt.bindString(1, event.getEventName());
         this.insertStmt.bindString(2, event.getLocation());
-        this.insertStmt.bindString(2, event.getDate());
+        this.insertStmt.bindString(3, event.getDate());
         try
         {
             this.insertStmt.executeInsert();
