@@ -16,6 +16,7 @@
     <string name="enter_password">Enter Password</string>
     <string name="new_user">New User</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="clear">Clear</string>
     <string name="create">Create</string>

@@ -42,11 +42,17 @@ public class EventLists extends ListActivity {
         switch (item.getItemId()) {
             case R.id.new_event:
 //                startActivity(new Intent(this, EventDetails.class));
-                startActivity(new Intent("cse5236.group11.socialeventplanner.EventDetails"));
+//                startActivity(new Intent("cse5236.group11.socialeventplanner.EventDetails"));
+                startActivity(new Intent(getApplicationContext(),EventDetails.class));
+                break;
+            case R.id.action_logout:
+//                startActivity(new Intent(this, EventDetails.class));
+                startActivity(new Intent("cse5236.group11.socialeventplanner.Login"));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+        return true;
     }
 
     @Override
