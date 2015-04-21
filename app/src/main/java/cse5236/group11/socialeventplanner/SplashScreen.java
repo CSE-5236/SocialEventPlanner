@@ -10,7 +10,7 @@ import android.view.MotionEvent;
  */
 public class SplashScreen extends Activity {
     protected boolean active = true;
-    protected int splashTime = 5000;
+    protected int splashTime = 3000;
     protected int timeIncrement = 100;
     protected int sleepTime = 100;
 
