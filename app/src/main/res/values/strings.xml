@@ -21,6 +21,7 @@
     <string name="clear">Clear</string>
     <string name="create">Create</string>
     <string name="create_new_account">Create New Account</string>
+    <string name="map_view">Open Google Maps</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="help">Help</string>

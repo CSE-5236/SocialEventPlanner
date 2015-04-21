@@ -52,6 +52,11 @@ public class EventLists extends ListActivity {
                 startActivity(new Intent("cse5236.group11.socialeventplanner.Login"));
                 finish();
                 break;
+            case R.id.map_event:
+//                startActivity(new Intent(this, EventDetails.class));
+//                startActivity(new Intent("cse5236.group11.socialeventplanner.EventDetails"));
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }

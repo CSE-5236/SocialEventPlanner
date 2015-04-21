@@ -4,6 +4,9 @@
     <item android:id="@+id/new_event"
         android:title="@string/new_event"
         app:showAsAction="always" />
+    <item android:id="@+id/map_event"
+        android:title="@string/map_view"
+        app:showAsAction="always" />
     <item android:id="@+id/action_logout" android:title="@string/logout"
         app:showAsAction="always" />
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
